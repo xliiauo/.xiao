@@ -1,0 +1,2 @@
+# .xiao
+My bash configuration
