@@ -25,8 +25,8 @@ function source_if_present(){
 }
 
 # Load Extra Things
-source_if_present "/usr/local/etc/bash_completion.d/git-completion.bash"
-source_if_present "/usr/local/etc/bash_completion.d/git-prompt.sh"
+# Run brew install bash-completion
+[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
 
 # Git Log Niceness
 _I_=' '
