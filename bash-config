@@ -1,0 +1,43 @@
+# Based on AdamWhittingham/bash-config, kept only those I use, added some extra.
+
+# Command Aliases
+## ls aliases
+alias ll='ls -alF'
+
+# Homebrew aliases
+alias br='brew update && brew upgrade && brew cleanup'
+
+## Ruby aliases
+alias be='bundle exec'
+alias rake='bundle exec rake'
+
+## Git aliases
+alias ga='git add'
+alias gc='git commit'
+alias gd='git diff'
+alias gl='git_pretty_log'
+alias gs='git status'
+	
+# Bind extra keys
+## Bind UpArrow and DownArrow to search to autocomplete the current command
+bind '"\e[A": history-search-backward'
+bind '"\e[B": history-search-forward' 
+
+# Git Log Niceness
+_I_=' '
+HASH="%C(green)%h%C(reset)"
+AGE="%C(yellow)%ar%C(reset)"
+AUTHOR="%C(bold blue)%an%C(reset)"
+REFS="%C(bold red)%d%C(reset)"
+COMMENT="%s"
+
+FORMAT="$HASH$_I_$AGE$_I_$AUTHOR$_I_$REFS $COMMENT"
+
+git_pretty_log() {
+  git log --graph --decorate --pretty="tformat:${FORMAT}" $* |
+  less -FXRS
+}
+
+
+
+
