@@ -17,11 +17,16 @@ alias gc='git commit'
 alias gd='git diff'
 alias gl='git_pretty_log'
 alias gs='git status'
-	
-# Bind extra keys
-## Bind UpArrow and DownArrow to search to autocomplete the current command
-bind '"\e[A": history-search-backward'
-bind '"\e[B": history-search-forward' 
+
+# Extra functions
+function source_if_present(){
+  local file="$1"
+  [[ -f $file ]] && source "$file"
+}
+
+# Load Extra Things
+source_if_present "/usr/local/etc/bash_completion.d/git-completion.bash"
+source_if_present "/usr/local/etc/bash_completion.d/git-prompt.sh"
 
 # Git Log Niceness
 _I_=' '
@@ -38,6 +43,98 @@ git_pretty_log() {
   less -FXRS
 }
 
+function git_working_changed {
+  git diff --quiet 2> /dev/null
+  if [[ $? == 0 ]]; then return 1; else return 0; fi
+}
 
+function git_staging_changed {
+  git diff --cached --quiet 2> /dev/null
+  if [[ $? == 0 ]]; then return 1; else return 0; fi
+}
 
+function git_changed {
+  $(git_working_changed) || $(git_staging_changed)
+}
+	
+# Bind extra keys
+## Bind UpArrow and DownArrow to search to autocomplete the current command
+bind '"\e[A": history-search-backward'
+bind '"\e[B": history-search-forward' 
 
+# Force term type to stop all the stupidity in vim, tmux et. al. Not a good idea but fixes too many things not to do it for now.
+export TERM=xterm-256color
+
+# Set vim as default editor
+export EDITOR=vim
+
+# Get CLI file colors back in OS X
+export CLICOLOR=1
+
+# Colour Vars
+bold="$(tput bold)"
+reset="\001$(tput sgr0)\002"
+blue="\001$bold$(tput setaf 4)\002"
+cyan="\001$bold$(tput setaf 6)\002"
+green="\001$bold$(tput setaf 2)\002"
+purple="\001$bold$(tput setaf 5)\002"
+red="\001$bold$(tput setaf 1)\002"
+white="\001$bold$(tput setaf 7)\002"
+yellow="\001$bold$(tput setaf 3)\002"
+
+# Prompt Colour Functions
+function user_colour {
+  local colour=$green
+  if [[ $(id -u) == 0 ]]; then
+    colour=$red
+  fi
+  echo $colour
+}
+
+git_prompt() {
+  if [ -n "$(__gitdir)" ]; then
+    echo -e "$(git_branch_colour)($(git_branch))"
+  fi
+}
+
+function git_seconds_since_commit {
+  now=`date +%s`
+  local last_commit=`git log --pretty=format:'%at' -1`
+  local seconds=$((now-last_commit))
+  echo $seconds
+}
+
+function seconds_to_minutes {
+  local secs="$1"
+  echo "$((${secs}/60))"
+}
+
+function git_mins_since_commit {
+  echo "$(seconds_to_minutes $(git_seconds_since_commit))"
+}
+
+function colour_for_minutes {
+  local minutes="$1"
+  local colour=$green
+  if [[ $minutes -gt 30 ]]; then colour=$red
+    elif [[ $minutes -gt 15 ]]; then colour=$yellow
+  fi
+  echo -e "$colour"
+}
+
+function git_branch_colour {
+  local colour=$blue
+  if $(git_changed) ; then
+    local minutes_since_commit="$(git_mins_since_commit)"
+    colour=$(colour_for_minutes $minutes_since_commit)
+  fi
+  echo -e $colour
+}
+
+function git_branch {
+  echo "$(__git_ps1 "%s")"
+}
+
+# Setup Prompt
+export PS2="-> "
+export PS1="$(user_colour)\u$reset@$yellow\h$reset:$purple\W$reset\$(git_prompt)$reset$PS2"
