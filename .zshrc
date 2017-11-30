@@ -94,12 +94,22 @@ source $ZSH/oh-my-zsh.sh
 ## ls aliases
 alias ll='ls -alF'
 
+## Git config variables
+_I_=' '
+HASH="%C(green)%h%C(reset)"
+AGE="%C(yellow)%ar%C(reset)"
+AUTHOR="%C(bold blue)%an%C(reset)"
+REFS="%C(bold red)%d%C(reset)"
+COMMENT="%s"
+
+FORMAT="$HASH$_I_$AGE$_I_$AUTHOR$_I_$REFS $COMMENT"
+
 ## Git aliases
 alias ga='git add'
 alias gc='git commit'
 alias gd='git diff'
-alias gl='git log --oneline --graph --decorate'
-alias gla='git log --oneline --graph --decorate --all'
+alias gl='git log --oneline --graph --decorate --pretty="tformat:${FORMAT}"'
+alias gla='git log --oneline --graph --decorate --all --pretty="tformat:${FORMAT}"'
 alias gs='git status'
 
 ## Ruby aliases
