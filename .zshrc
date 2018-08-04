@@ -24,6 +24,9 @@ COMMENT="%s"
 
 FORMAT="$HASH$_I_$AGE$_I_$AUTHOR$_I_$REFS $COMMENT"
 
+## ls aliases
+alias ll='ls -al'
+
 ## Git aliases
 alias ga='git add'
 alias gc='git commit'
