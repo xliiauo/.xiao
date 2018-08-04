@@ -2,7 +2,7 @@
 export ZSH="/Users/xiao/.oh-my-zsh"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
-# iTerm background set to 242d40
+# iTerm background set to 202020
 ZSH_THEME="robbyrussell"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
