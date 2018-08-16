@@ -2,7 +2,7 @@
 export ZSH="/Users/xiao/.oh-my-zsh"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
-# iTerm background set to 202020
+# iTerm background set to 202020, cyan to 60c2ff
 ZSH_THEME="robbyrussell"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
@@ -41,3 +41,10 @@ export NVM_DIR="$HOME/.nvm"
 
 alias node='unalias node ; unalias npm ; nvm use default ; node $@'
 alias npm='unalias node ; unalias npm ; nvm use default ; npm $@'
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f /Users/xiao/.config/yarn/global/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/xiao/.config/yarn/global/node_modules/tabtab/.completions/serverless.zsh
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[[ -f /Users/xiao/.config/yarn/global/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/xiao/.config/yarn/global/node_modules/tabtab/.completions/sls.zsh
