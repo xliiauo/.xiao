@@ -51,3 +51,7 @@ alias npm='unalias node ; unalias npm ; nvm use default ; npm $@'
 
 # Configure rbenv
 eval "$(rbenv init -)"
+
+## Proxy aliases
+alias p='source $HOME/.xiao/proxy on'
+alias np='source $HOME/.xiao/proxy off'

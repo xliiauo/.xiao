@@ -1,0 +1,29 @@
+#! /bin/sh
+
+if [[ ! -f $HOME/.xiao/profile.d/proxy ]]; then
+  echo "FAILED: $HOME/profile.d/proxy does not exist."
+  echo 'Create the file and ensure is exports http_proxy'
+  echo "For example, run the following command, replacing 'my_proxy:8080' with your proxy:"
+  echo "echo 'export http_proxy=my_proxy:8080' >$HOME/profile.d/proxy"
+  return 1
+fi
+
+source $HOME/.xiao/profile.d/proxy
+proxy=$http_proxy
+
+if [[ "$1" == "on" ]]; then
+	echo "Setting proxies to $proxy"
+
+	export http_proxy=$proxy
+	export https_proxy=$proxy
+	export HTTP_PROXY=$proxy
+	export HTTPS_PROXY=$proxy
+
+else
+	echo "Disabling proxies"
+
+	unset http_proxy
+	unset https_proxy
+	unset HTTP_PROXY
+	unset HTTPS_PROXY
+fi
