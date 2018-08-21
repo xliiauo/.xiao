@@ -48,3 +48,6 @@ alias npm='unalias node ; unalias npm ; nvm use default ; npm $@'
 # tabtab source for sls package
 # uninstall by removing these lines or running `tabtab uninstall sls`
 [[ -f /Users/xiao/.config/yarn/global/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/xiao/.config/yarn/global/node_modules/tabtab/.completions/sls.zsh
+
+# Configure rbenv
+eval "$(rbenv init -)"
