@@ -35,6 +35,9 @@ alias gl='git log --oneline --graph --decorate --pretty="tformat:${FORMAT}"'
 alias gla='git log --oneline --graph --decorate --all --pretty="tformat:${FORMAT}"'
 alias gs='git status'
 
+## Ruby aliases
+alias be='bundle exec'
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -55,3 +58,12 @@ eval "$(rbenv init -)"
 ## Proxy aliases
 alias p='source $HOME/.xiao/proxy on'
 alias np='source $HOME/.xiao/proxy off'
+# zsh syntax highlighting
+if [ -f "/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
+  source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+
+# zsh auto suggestion
+if [ -f "/usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; then
+  source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
