@@ -24,6 +24,9 @@ COMMENT="%s"
 
 FORMAT="$HASH$_I_$AGE$_I_$AUTHOR$_I_$REFS $COMMENT"
 
+## Terraform aliases
+alias tf='terraform'
+
 ## ls aliases
 alias ll='ls -al'
 
@@ -38,26 +41,6 @@ alias gs='git status'
 ## Ruby aliases
 alias be='bundle exec'
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-alias node='unalias node ; unalias npm ; nvm use default ; node $@'
-alias npm='unalias node ; unalias npm ; nvm use default ; npm $@'
-
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[[ -f /Users/xiao/.config/yarn/global/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/xiao/.config/yarn/global/node_modules/tabtab/.completions/serverless.zsh
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[[ -f /Users/xiao/.config/yarn/global/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/xiao/.config/yarn/global/node_modules/tabtab/.completions/sls.zsh
-
-# Configure rbenv
-eval "$(rbenv init -)"
-
-## Proxy aliases
-alias p='source $HOME/.xiao/proxy on'
-alias np='source $HOME/.xiao/proxy off'
 # zsh syntax highlighting
 if [ -f "/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
   source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -67,3 +50,35 @@ fi
 if [ -f "/usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; then
   source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
+
+# pyenv configs
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+
+if which pyenv-virtualenv-init > /dev/null; then
+  eval "$(pyenv virtualenv-init -)";
+fi
+
+# golang path
+export PATH="$HOME/go/bin:$PATH"
+
+# Goenv configs
+export GOENV_ROOT="$HOME/.goenv"
+export PATH="$GOENV_ROOT/bin:$PATH"
+
+eval "$(goenv init -)"
+
+export PATH="$GOROOT/bin:$PATH"
+export PATH="$GOPATH/bin:$PATH"
+
+# rbenv configs
+eval "$(rbenv init -)"
+export PATH="/usr/local/sbin:$PATH"
+
+## fix https://github.com/pyenv/pyenv/issues/106
+alias brew='env PATH=${PATH//$(pyenv root)\/shims:/} brew'
+
