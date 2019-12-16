@@ -63,17 +63,17 @@ if which pyenv-virtualenv-init > /dev/null; then
   eval "$(pyenv virtualenv-init -)";
 fi
 
-# golang path
-export PATH="$HOME/go/bin:$PATH"
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/path.zsh.inc"; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
 
 # Goenv configs
 export GOENV_ROOT="$HOME/.goenv"
 export PATH="$GOENV_ROOT/bin:$PATH"
 
 eval "$(goenv init -)"
-
-export PATH="$GOROOT/bin:$PATH"
-export PATH="$GOPATH/bin:$PATH"
 
 # rbenv configs
 eval "$(rbenv init -)"
@@ -82,3 +82,7 @@ export PATH="/usr/local/sbin:$PATH"
 ## fix https://github.com/pyenv/pyenv/issues/106
 alias brew='env PATH=${PATH//$(pyenv root)\/shims:/} brew'
 
+# tabtab source for packages
+# uninstall by removing these lines
+[[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true
+export PATH="$(python -m site --user-base)/bin:${PATH}"
