@@ -78,6 +78,8 @@ eval "$(goenv init -)"
 # rbenv configs
 eval "$(rbenv init -)"
 export PATH="/usr/local/sbin:$PATH"
+export PATH="$GOROOT/bin:$PATH"
+export PATH="$PATH:$GOPATH/bin"
 
 ## fix https://github.com/pyenv/pyenv/issues/106
 alias brew='env PATH=${PATH//$(pyenv root)\/shims:/} brew'
