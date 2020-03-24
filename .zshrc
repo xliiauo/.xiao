@@ -84,7 +84,3 @@ export PATH="$PATH:$GOPATH/bin"
 ## fix https://github.com/pyenv/pyenv/issues/106
 alias brew='env PATH=${PATH//$(pyenv root)\/shims:/} brew'
 
-# tabtab source for packages
-# uninstall by removing these lines
-[[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true
-export PATH="$(python -m site --user-base)/bin:${PATH}"
