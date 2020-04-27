@@ -84,3 +84,6 @@ export PATH="$PATH:$GOPATH/bin"
 ## fix https://github.com/pyenv/pyenv/issues/106
 alias brew='env PATH=${PATH//$(pyenv root)\/shims:/} brew'
 
+## Proxy aliases
+alias p='source $HOME/.xiao/proxy on'
+alias np='source $HOME/.xiao/proxy off'
