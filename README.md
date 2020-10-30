@@ -1,17 +1,18 @@
 # .xiao
 My bash configuration.
 
-Installation:
+## Installation
+Install dependencies:
 ```
-brew install git bash-completion
+$ brew install git bash-completion zsh-syntax-highlighting zsh-autosuggestions
+```
 
-git clone https://github.com/xliiauo/.xiao.git ~/.xiao
+Add Dracula theme for iTerm: https://draculatheme.com/iterm
 
-cat >>~/.bash_profile <<EOS
-  if [[ -f ~/.xiao/bash-config ]]; then
-    source ~/.xiao/bash-config
-  fi
-EOS
+Install oh-my-zsh: https://github.com/ohmyzsh/ohmyzsh
 
-source ~/.bash_profile
+Add zsh config:
+```
+$ git clone https://github.com/xliiauo/.xiao.git ~/.xiao
+$ ln -s .xiao/.zshrc .zshrc
 ```
