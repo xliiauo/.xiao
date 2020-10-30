@@ -1,5 +1,5 @@
 # .xiao
-My bash configuration.
+My shell configuration.
 
 ## Installation
 Install dependencies:
