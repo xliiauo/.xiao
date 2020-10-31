@@ -72,12 +72,7 @@ if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-clou
 # Goenv configs
 export GOENV_ROOT="$HOME/.goenv"
 export PATH="$GOENV_ROOT/bin:$PATH"
-
 eval "$(goenv init -)"
-
-# rbenv configs
-eval "$(rbenv init -)"
-export PATH="/usr/local/sbin:$PATH"
 export PATH="$GOROOT/bin:$PATH"
 export PATH="$PATH:$GOPATH/bin"
 
