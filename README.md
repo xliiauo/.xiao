@@ -16,3 +16,9 @@ Add zsh config:
 $ git clone https://github.com/xliiauo/.xiao.git ~/.xiao
 $ ln -s .xiao/.zshrc .zshrc
 ```
+## Update
+```
+$ cd .xiao
+$ git pull
+$ exec $SHELL
+```
