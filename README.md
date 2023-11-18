@@ -4,7 +4,7 @@ My shell configuration.
 ## Installation
 Install dependencies:
 ```
-$ brew install git bash-completion zsh-syntax-highlighting zsh-autosuggestions
+$ brew install git zsh-syntax-highlighting zsh-autosuggestions
 ```
 
 Add Dracula theme for iTerm: https://draculatheme.com/iterm
